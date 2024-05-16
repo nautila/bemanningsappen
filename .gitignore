@@ -1,0 +1,69 @@
+# See https://git-scm.com/docs/gitignore
+
+# secrets
+*service-account*.json
+server.crt
+server.key
+
+# env files
+.env*
+!.env.default
+!.env.*.default
+!.env.example
+!applications/*/.env*
+applications/*/.env*.local
+
+# generated files
+dbschema/query-builder
+dbschema/interfaces.ts
+
+# compiled output, cache, data, temp and system folders
+.cache
+.**cache
+.data
+.**data
+dist
+.logs
+*.log
+.nuxt
+.nitro
+.nx
+.output
+out-tsc
+tmp
+temp
+.**temp
+
+# dependencies and unwanted lockfiles
+node_modules
+package-lock.json
+yarn.lock
+
+# dependencies log files
+**npm-debug.log*
+**yarn-debug.log*
+**yarn-error.log*
+**pnpm-debug.log*
+
+# testing
+/coverage
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# system files
+.DS_Store
+Thumbs.db
