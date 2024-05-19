@@ -1,11 +1,11 @@
-module job {
-	type Job {
-		title: str;
-		location: geo::Location;
+# module job {
+# 	type Job {
+# 		title: str;
+# 		location: geo::Location;
 
-		start: datetime;
-		end: datetime;
+# 		start: datetime;
+# 		end: datetime;
 
-		multi requirements: qualification::Qualification;
-	}
-}
+# 		multi requirements: qualification::Qualification;
+# 	}
+# }

@@ -1,14 +1,6 @@
 module employee {
-	type Employee {
-		name: str;
-		brithday: datetime;
-
-		multi qualifications: qualification::Qualification;
-	}
-}
-
-module cv {
 	type CV {
+		required employee: default::Employee;
 		required title: str;
 		tagline: str;
 		introduction: str;
@@ -19,47 +11,48 @@ module cv {
 	}
 
 	abstract type Experience {
-		employee: employee::Employee;
+		required employee: default::Employee;
 		description: str;
-		required start: datetime;
-		end: datetime;
+		required startDate: datetime;
+		endDate: datetime;
 	}
 
 	module experience {
-		type Work extending cv::Experience {
+		type Work extending employee::Experience {
 			company: str;
 			position: str;
 		}
 
-		type Education extending cv::Experience {
+		type Education extending employee::Experience {
 			school: str;
 			degree: str;
 		}
 
-		type Course extending cv::Experience {
+		type Course extending employee::Experience {
 			provider: str;
 			course: str;
 		}
 
-		type Project extending cv::Experience {
+		type Project extending employee::Experience {
 			project: str;
 			role: str;
 		}
 	}
 
 	abstract type Qualification {
-		employee: employee::Employee;
+		required employee: default::Employee;
 		required issuedAt: datetime;
+		issuedBy: str;
 		expiresAt: datetime;
 	}
 
 	module qualification {
-		type License extending cv::Qualification {}
-		type Degree extending cv::Qualification {}
-		type Certification extending cv::Qualification {}
+		type License extending employee::Qualification {}
+		type Degree extending employee::Qualification {}
+		type Certification extending employee::Qualification {}
 
 		module license {
-			type DriversLicense extending cv::qualification::License {
+			type DriversLicense extending employee::qualification::License {
 				region: str;
 				multi classes: str;
 			}
@@ -67,6 +60,6 @@ module cv {
 	}
 
 	abstract type Skill {
-		employee: employee::Employee;
+		required employee: default::Employee;
 	}
 }
