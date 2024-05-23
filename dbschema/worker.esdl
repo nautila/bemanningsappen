@@ -1,5 +1,16 @@
 module worker {
-	abstract type Desires {}
+	scalar type JobType extending enum<Driving, Cooking, Cleaning, Moving>;
+
+	type WorkingHours {
+		required startTime: cal::local_time;
+		required endTime: cal::local_time;
+	}
+
+	abstract type Desires {
+		required worker: default::Worker;
+		required desiredJobType: JobType;
+		multi preferredWorkingHours: WorkingHours;
+	}
 
 	type CV {
 		required worker: default::Worker;
