@@ -21,6 +21,13 @@ module worker {
 		multi experiences: Experience { on source delete delete target if orphan };
 		multi qualifications: Qualification { on source delete delete target if orphan };
 		multi skills: Skill { on source delete delete target if orphan };
+
+		access policy worker_has_full_access
+			allow all
+			using (.worker ?= global default::ClientUser);
+
+		access policy others_read_only
+			allow select;
 	}
 
 	abstract type Experience {
