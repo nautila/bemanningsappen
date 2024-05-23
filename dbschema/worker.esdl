@@ -1,6 +1,8 @@
-module employee {
+module worker {
+	abstract type Desires {}
+
 	type CV {
-		required employee: default::Employee;
+		required worker: default::Worker;
 		required title: str;
 		tagline: str;
 		introduction: str;
@@ -11,48 +13,48 @@ module employee {
 	}
 
 	abstract type Experience {
-		required employee: default::Employee;
+		required worker: default::Worker;
 		description: str;
 		required startDate: datetime;
 		endDate: datetime;
 	}
 
 	module experience {
-		type Work extending employee::Experience {
+		type Work extending worker::Experience {
 			company: str;
 			position: str;
 		}
 
-		type Education extending employee::Experience {
+		type Education extending worker::Experience {
 			school: str;
 			degree: str;
 		}
 
-		type Course extending employee::Experience {
+		type Course extending worker::Experience {
 			provider: str;
 			course: str;
 		}
 
-		type Project extending employee::Experience {
+		type Project extending worker::Experience {
 			project: str;
 			role: str;
 		}
 	}
 
 	abstract type Qualification {
-		required employee: default::Employee;
+		required worker: default::Worker;
 		required issuedAt: datetime;
 		issuedBy: str;
 		expiresAt: datetime;
 	}
 
 	module qualification {
-		type License extending employee::Qualification {}
-		type Degree extending employee::Qualification {}
-		type Certification extending employee::Qualification {}
+		type License extending worker::Qualification {}
+		type Degree extending worker::Qualification {}
+		type Certification extending worker::Qualification {}
 
 		module license {
-			type DriversLicense extending employee::qualification::License {
+			type DriversLicense extending worker::qualification::License {
 				region: str;
 				multi classes: str;
 			}
@@ -60,6 +62,6 @@ module employee {
 	}
 
 	abstract type Skill {
-		required employee: default::Employee;
+		required worker: default::Worker;
 	}
 }

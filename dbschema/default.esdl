@@ -9,7 +9,7 @@ module default {
 
 	abstract type Account {}
 
-	type Employee extending default::Account {
+	type Worker extending default::Account {
 		required user: default::User {
 			constraint exclusive;
 		};
