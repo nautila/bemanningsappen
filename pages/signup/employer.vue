@@ -1,1 +1,9 @@
-<template></template>
+<template>
+	<registration-employeer/>
+</template>
+
+<script setup lang="ts">
+definePageMeta({
+	layout: 'public',
+})
+</script>
