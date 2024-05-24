@@ -1,13 +1,16 @@
 <template>
 	<a-row>
-		<a
-
+		<a-col :span="24">
+			<slot />
+		</a-col>
 	</a-row>
-
 </template>
 
+
 <script setup lang="ts">
-definePageMeta({
-	layout: 'public',
-})
+
 </script>
+
+<style scoped>
+
+</style>

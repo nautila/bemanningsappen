@@ -10,6 +10,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"devDependencies": {
+		"@ant-design-vue/nuxt": "^1.4.1",
 		"@edgedb/generate": "^0.5.3",
 		"@pinia/nuxt": "^0.5.1",
 		"nuxt": "^3.11.2",
@@ -18,5 +19,9 @@
 		"vue": "^3.4.27",
 		"vue-router": "^4.3.2",
 		"zod": "^3.23.8"
+	},
+	"dependencies": {
+		"@ant-design/icons-vue": "^7.0.1",
+		"ant-design-vue": "^4.2.1"
 	}
 }
