@@ -1,9 +1,5 @@
 <template>
-	<a-row>
-		<a
-
-	</a-row>
-
+	<registration-employeer/>
 </template>
 
 <script setup lang="ts">

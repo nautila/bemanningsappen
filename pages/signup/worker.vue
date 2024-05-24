@@ -1,5 +1,5 @@
 <template>
-
+	<registration-worker/>
 </template>
 
 <script setup lang="ts">

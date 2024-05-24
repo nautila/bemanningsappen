@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 		https: devServerHttps(),
 	},
 	// css: ["~/assets/css/main.css"],
-	modules: ["nuxt-edgedb-module", "nuxt-typed-router", "@pinia/nuxt", "@ant-design-vue/nuxt"],
+	modules: ["nuxt-edgedb-module", "nuxt-typed-router", "@pinia/nuxt", "@ant-design-vue/nuxt", "@nuxtjs/tailwindcss"],
 	edgeDb: {
 		auth: true,
 		generateQuiet: false,

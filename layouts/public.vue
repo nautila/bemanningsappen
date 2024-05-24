@@ -1,5 +1,5 @@
 <template>
-	<a-row>
+	<a-row class="m-10 p-10">
 		<a-col :span="24">
 			<slot />
 		</a-col>
@@ -10,7 +10,6 @@
 <script setup lang="ts">
 
 </script>
-
 <style scoped>
 
 </style>

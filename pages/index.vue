@@ -1,7 +1,7 @@
 <template>
 	<a-row type="flex" justify="center">
 		<a-card title="Bemanningsappen">
-			<p>Make yourself available for temp jobs in your area.</p>
+			<a-typography class="mb-20">Make yourself available for temp jobs in your area.</a-typography>
 			<a-flex justify="space-between" gap="20">
 				<a-button type="primary" @click="handleEmployerSignup">Register as an employer</a-button>
 				<a-button type="default" @click="handleWorkerSignup">Register as a Worker</a-button>
