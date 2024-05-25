@@ -34,7 +34,7 @@ module worker {
 		# 	allow select;
 	}
 
-	scalar type ExperienceType extending enum<Work, Education, Course, Project>;
+	scalar type ExperienceType extending enum<Work, Education, Course, Project>; # TODO: Might be removed, if made uncessecary due to __type__.name
 	abstract type Experience {
 		required worker: default::Worker;
 		required type: ExperienceType;
@@ -82,7 +82,7 @@ module worker {
 		}
 	}
 
-	scalar type QualificationType extending enum<License, Degree, Certification>;
+	scalar type QualificationType extending enum<License, Degree, Certification>; # TODO: Might be removed, if made uncessecary due to __type__.name
 	abstract type Qualification {
 		required worker: default::Worker;
 		required type: QualificationType;

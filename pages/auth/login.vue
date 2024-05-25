@@ -1,76 +1,51 @@
 <script setup lang="ts">
-import { Form } from "ant-design-vue";
-import { LockOutlined, UserOutlined } from "@ant-design/icons-vue";
+import type { LoginResponse } from "~/types/auth/login";
 
 definePageMeta({ layout: "public" });
 
-const sessionStore = useSessionStore();
+const router = useRouter();
+const session = useSessionStore();
 
-const formState = reactive({ email: "", password: "" });
+const showLoginForm = ref(true);
+const showAccountSelection = ref(false);
 
-const { validate, validateInfos } = Form.useForm(formState, {
-	email: [
-		{ required: true, message: "Please input your email!" },
-		{ type: "email", message: "The input is not valid E-mail!" },
-	],
-	password: [{ required: true, message: "Please input your password!" }],
-});
+const handleLoggedIn = (response: LoginResponse) => {
+	session.set(response);
+	const accounts = session.accounts;
+	console.log(accounts);
 
-const loading = ref(false);
-const error = ref(false);
+	handleSelectAccount(null); // TODO: Remove this line, and uncomment below
 
-const submit = async () => {
-	error.value = false;
-	loading.value = true;
+	// if (!accounts || !accounts.length) throw new Error("No accounts found");
 
-	try {
-		const response = await $fetch("/api/auth/login", { method: "POST", body: formState });
-		console.log("Login response", response);
-		sessionStore.set(response);
-	} catch (e) {
-		console.error("Login error", e);
-		error.value = true;
+	// if (accounts.length > 1) {
+	// 	showLoginForm.value = false;
+	// 	showAccountSelection.value = true;
+	// } else if (accounts.length === 1) {
+	// 	handleSelectAccount(accounts[0]);
+	// }
+};
+
+const handleSelectAccount = (
+	account: any, // TODO: Set proper type
+) => {
+	// const type = account.type;
+	const type = "worker" as "worker" | "employer"; // TODO: Remove this line
+
+	switch (type) {
+		case "worker":
+			return router.push("/worker");
+		case "employer":
+			return router.push(`/employer/${account.id}`);
 	}
-
-	loading.value = false;
 };
 </script>
 
 <template>
 	<a-row class="w-70 m-auto flex justify-center">
 		<a-card title="Login" class="w-100 bg-blend-dark">
-			<a-form layout="vertical" @submit.prevent="!loading && submit()">
-				<a-row :gutter="20">
-					<a-col span="12">
-						<a-form-item label="Email" v-bind="validateInfos.email">
-							<a-input v-model:value="formState.email" placeholder="Email">
-								<template #prefix>
-									<UserOutlined style="color: rgba(0, 0, 0, 0.25)" />
-								</template>
-							</a-input>
-						</a-form-item>
-					</a-col>
-					<a-col span="12">
-						<a-form-item label="Password" v-bind="validateInfos.password">
-							<a-input v-model:value="formState.password" type="password" placeholder="Password">
-								<template #prefix>
-									<LockOutlined style="color: rgba(0, 0, 0, 0.25)" />
-								</template>
-							</a-input>
-						</a-form-item>
-					</a-col>
-					<a-col span="24" align="center">
-						<a-flex justify="space-between">
-							<a-button size="large" type="default" @click.prevent="() => $router.go(-1)">Back</a-button>
-							<a-form-item>
-								<a-button html-type="submit" type="primary" size="large">{{ loading ? "Loading" : "Login" }}</a-button>
-							</a-form-item>
-						</a-flex>
-					</a-col>
-
-					<ACol :span="24" v-if="error" class="text-center text-red-500"> Invalid email or password </ACol>
-				</a-row>
-			</a-form>
+			<BAuthLoginForm v-if="showLoginForm" @logged-in="handleLoggedIn" />
+			<BAuthAccountSelection v-if="showAccountSelection" @account-selected="handleSelectAccount" />
 		</a-card>
 	</a-row>
 </template>

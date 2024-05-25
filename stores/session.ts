@@ -1,9 +1,21 @@
-interface SessionData {}
+import type { LoginResponse } from "~/types/auth/login";
+
+export interface SessionStoreData {
+	token: string;
+	user: any; // TODO
+	accounts: any[]; // TODO
+}
 
 export const useSessionStore = defineStore("session", () => {
-	const session = ref<null | SessionData>(null);
+	const session = ref<null | SessionStoreData>(null);
 
-	function set(session: SessionData) {}
+	const token = computed(() => session.value?.token);
+	const user = computed(() => session.value?.user);
+	const accounts = computed(() => session.value?.accounts);
 
-	return { session, set };
+	function set(loginResponse: LoginResponse) {
+		session.value = loginResponse;
+	}
+
+	return { session, token, user, accounts, set };
 });
