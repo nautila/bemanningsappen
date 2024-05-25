@@ -7,7 +7,7 @@ const onSubmit = async (body: SignupWorkerFormData) => {
 	const res = await $fetch("/api/signup/worker", { method: "POST", body });
 
 	if (res) {
-		navigateTo("/"); // TODO: Send to login instead.
+		navigateTo("/auth/login");
 	}
 };
 </script>
