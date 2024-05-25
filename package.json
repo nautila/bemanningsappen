@@ -7,7 +7,8 @@
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare"
+		"postinstall": "nuxt prepare",
+		"nukedatabase": "edgedb query 'create database x;' || edgedb --database x query 'drop database main;' && edgedb --database x query 'create database main;'"
 	},
 	"devDependencies": {
 		"@ant-design-vue/nuxt": "^1.4.1",
