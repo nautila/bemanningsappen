@@ -4,7 +4,11 @@ import type { SignupWorkerFormData } from "@/types/signup-worker";
 definePageMeta({ layout: "public" });
 
 const onSubmit = async (body: SignupWorkerFormData) => {
-	await $fetch("/api/signup/worker", { method: "POST", body });
+	const res = await $fetch("/api/signup/worker", { method: "POST", body });
+
+	if (res) {
+		navigateTo("/"); // TODO: Send to login instead.
+	}
 };
 </script>
 
