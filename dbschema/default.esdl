@@ -4,6 +4,10 @@ module default {
 	global ClientUser := (assert_single((select User filter global ext::auth::ClientTokenIdentity in .identities)));
 
 	type User {
+		firstName: str;
+		lastName: str;
+		dateOfBirth: datetime;
+
 		multi identities: ext::auth::Identity;
 	}
 
@@ -13,12 +17,11 @@ module default {
 		required user: default::User {
 			constraint exclusive;
 		};
-
-		name: str;
-		brithday: datetime;
 	}
 
 	type Employer extending default::Account {
 		multi users: default::User;
+
+		name: str;
 	}
 }
