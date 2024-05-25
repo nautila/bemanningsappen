@@ -26,6 +26,10 @@ export default defineNuxtConfig({
 		auth: false,
 		generateQuiet: false,
 		generateInterfaces: true,
+		generateQueries: true,
+		generateQueryBuilder: true,
+		installCli: false,
+		watch: true,
 	},
 	runtimeConfig: {
 		edgedbAuthBaseUrl: "",
