@@ -2,7 +2,7 @@ import generatePKCE from "./generatePKCE";
 
 // TODO: Replace with proper envvar getter functions.
 // const EDGEDB_AUTH_BASE_URL = process.env.EDGEDB_AUTH_BASE_URL;
-const EDGEDB_AUTH_BASE_URL = "http://localhost:10706/branch/main/ext/auth";
+const EDGEDB_AUTH_BASE_URL = "http://localhost:10732/branch/main/ext/auth";
 const SERVER_PORT = 3000;
 const EDGEDB_AUTH_DEFAULT_PROVIDER = "builtin::local_emailpassword";
 
