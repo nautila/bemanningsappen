@@ -1,9 +1,9 @@
 <template>
 	<a-row>
 		<shared-page-header title="Profile Information" subTitle="Your profile information" />
-		<a-col spnan="24">
-			<a-tabs v-model:activeKey="activeKey" class="p-5" >
-				<a-tab-pane v-for="tab in tabs" :key="tab.key" :tab="tab.label" @click.prevent="changeComponet(tab.key)">
+		<a-col span="24">
+			<a-tabs v-model:activeKey="activeKey" class="p-5 w-full">
+				<a-tab-pane v-for="tab in tabs" :key="tab.key" :tab="tab.label">
 					<component :is="tab.component" />
 				</a-tab-pane>
 			</a-tabs>
