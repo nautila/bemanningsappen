@@ -20,13 +20,16 @@ importers:
         version: 1.4.1(ant-design-vue@4.2.1(vue@3.4.27))(rollup@4.17.2)(vue@3.4.27)
       '@edgedb/generate':
         specifier: ^0.5.3
-        version: 0.5.3(edgedb@1.5.6)
+        version: 0.5.3(edgedb@1.5.7)
       '@nuxtjs/tailwindcss':
         specifier: ^6.12.0
         version: 6.12.0(rollup@4.17.2)
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@4.17.2)(vue@3.4.27)
+      edgedb:
+        specifier: ^1.5.7
+        version: 1.5.7
       nuxt:
         specifier: ^3.11.2
         version: 3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.12.12)(@unocss/reset@0.60.2)(async-validator@4.2.5)(encoding@0.1.13)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.27))(ioredis@5.4.1)(rollup@4.17.2)(terser@5.31.0)(unocss@0.60.2(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0)))(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))
@@ -1836,8 +1839,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  edgedb@1.5.6:
-    resolution: {integrity: sha512-UQqzwqeuza1EOTDC9ZzvfhOYj2ZvE9k1KvB1fVTQAoC3MYg+colaJWbIajSEMpdgCFmlljhzQlOar+9FZnU/2g==}
+  edgedb@1.5.7:
+    resolution: {integrity: sha512-PlINnSnjPUaRxFKUaq+vfIIirdtN8RO3WrYwDEE9qz58MaX9ZlFnrX23AmJExZSKAsHnJUI33GofZWn9qN2G5Q==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -4355,14 +4358,14 @@ snapshots:
 
   '@ctrl/tinycolor@3.6.1': {}
 
-  '@edgedb/generate@0.4.1(edgedb@1.5.6)':
+  '@edgedb/generate@0.4.1(edgedb@1.5.7)':
     dependencies:
-      edgedb: 1.5.6
+      edgedb: 1.5.7
 
-  '@edgedb/generate@0.5.3(edgedb@1.5.6)':
+  '@edgedb/generate@0.5.3(edgedb@1.5.7)':
     dependencies:
       '@iarna/toml': 2.2.5
-      edgedb: 1.5.6
+      edgedb: 1.5.7
 
   '@emotion/hash@0.9.1': {}
 
@@ -6195,7 +6198,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  edgedb@1.5.6:
+  edgedb@1.5.7:
     dependencies:
       debug: 4.3.4
       env-paths: 3.0.0
@@ -7285,9 +7288,9 @@ snapshots:
 
   nuxt-edgedb-module@0.0.46(rollup@4.17.2):
     dependencies:
-      '@edgedb/generate': 0.4.1(edgedb@1.5.6)
+      '@edgedb/generate': 0.4.1(edgedb@1.5.7)
       '@nuxt/kit': 3.11.2(rollup@4.17.2)
-      edgedb: 1.5.6
+      edgedb: 1.5.7
       execa: 8.0.1
       prompts: 2.4.2
     transitivePeerDependencies:
