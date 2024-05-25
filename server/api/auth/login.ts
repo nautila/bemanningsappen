@@ -1,12 +1,15 @@
+import { useAuthentication } from "~/server/auth";
 import type { LoginResponse } from "~/types/auth/login";
 
 export default defineEventHandler(async (event) => {
 	const body = await readBody(event);
 
-	console.log("Login request received with body:", body);
+	const { login } = useAuthentication();
+
+	const token = await login(body);
 
 	return {
-		token: "...",
+		token,
 		user: { id: "..." },
 		accounts: [],
 	} as LoginResponse;
