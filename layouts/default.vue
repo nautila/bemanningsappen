@@ -1,5 +1,5 @@
 <template>
-	<a-layout style="height: 100vh">
+	<a-layout style="height: 100%; min-height: 100vh">
 	 <shared-sidebar :collapsed="collapsed"/>
 		<a-layout>
 			<a-layout-header style="background: #fff; padding: 0">
