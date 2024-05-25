@@ -16,7 +16,7 @@ export default defineNuxtConfig({
 	// css: ["~/assets/css/main.css"],
 	modules: ["nuxt-edgedb-module", "nuxt-typed-router", "@pinia/nuxt", "@ant-design-vue/nuxt", "@nuxtjs/tailwindcss"],
 	edgeDb: {
-		auth: true,
+		auth: false,
 		generateQuiet: false,
 		generateInterfaces: true,
 	},
