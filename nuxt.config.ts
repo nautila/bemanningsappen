@@ -20,4 +20,11 @@ export default defineNuxtConfig({
 		generateQuiet: false,
 		generateInterfaces: true,
 	},
+	runtimeConfig: {
+		edgedbAuthBaseUrl: "",
+		edgedbAuthDefaultProvider: "",
+		public: {
+			serverPort: 0,
+		},
+	},
 });
