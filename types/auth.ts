@@ -12,3 +12,5 @@ export interface LoginResponse {
 	user: SessionUser;
 	accounts: SessionAccount[];
 }
+
+export interface SessionData extends LoginResponse {}

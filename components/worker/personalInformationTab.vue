@@ -6,14 +6,12 @@ const emit = defineEmits<{
 	submit: [state: UserData];
 }>();
 
-
 const formState: UserData = reactive({
 	firstName: "",
 	lastName: "",
 	dateOfBirth: null,
 });
-const useForm = Form.useForm;
-const { validate, validateInfos } = useForm(formState, {
+const { validate, validateInfos } = Form.useForm(formState, {
 	firstName: [
 		{
 			required: true,
@@ -45,6 +43,7 @@ const onSubmit = () => {
 		});
 };
 </script>
+
 <template>
 	<a-form layout="vertical" @submit="onSubmit">
 		<a-row :gutter="20">
@@ -77,10 +76,7 @@ const onSubmit = () => {
 		</a-row>
 
 		<a-row />
-
 	</a-form>
-
 </template>
-<style scoped>
 
-</style>
+<style scoped></style>

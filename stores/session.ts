@@ -1,15 +1,9 @@
-import type { LoginResponse } from "~/types/auth";
-
-export interface SessionStoreData {
-	token: string;
-	user: any; // TODO
-	accounts: any[]; // TODO
-}
+import type { LoginResponse, SessionData } from "~/types/auth";
 
 export const useSessionStore = defineStore(
 	"session",
 	() => {
-		const session = ref<null | SessionStoreData>(null);
+		const session = ref<null | SessionData>(null);
 
 		const token = computed(() => session.value?.token);
 		const user = computed(() => session.value?.user);

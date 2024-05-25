@@ -14,7 +14,7 @@ module worker {
 
 	type CV {
 		required worker: default::Worker { constraint exclusive; };
-		required title: str;
+		# required title: str;
 		tagline: str;
 		introduction: str;
 

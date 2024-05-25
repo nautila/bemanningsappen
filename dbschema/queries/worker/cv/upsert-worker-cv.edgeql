@@ -1,12 +1,15 @@
 with module worker,
-	TITLE := <str>$title,
+	TAGLINE := <optional str>$tagline,
+	INTRODUCTION := <optional str>$introduction,
 insert CV {
 	worker := <default::Worker>$workerId,
-	title := TITLE,
+	tagline := TAGLINE,
+	introduction := INTRODUCTION,
 }
 unless conflict on .worker
 else (
 	update CV set {
-		title := TITLE,
+		tagline := TAGLINE ?? CV.tagline,
+		introduction := INTRODUCTION ?? CV.introduction,
 	}
 );

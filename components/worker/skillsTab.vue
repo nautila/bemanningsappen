@@ -8,11 +8,9 @@ interface Skill {
 	disabled: boolean;
 }
 
-const formState: {selectedValues: string[]} = reactive(
-	{
-		selectedValues : [],
-	},
-);
+const formState: { selectedValues: string[] } = reactive({
+	selectedValues: [],
+});
 
 const VNodes = defineComponent({
 	props: {
@@ -38,16 +36,17 @@ const options = reactive<Skill[]>([
 const name = ref("");
 
 const useForm = Form.useForm;
-const { validate, validateInfos } = useForm(formState,{
+const { validate, validateInfos } = useForm(formState, {
 	selectedValues: [
 		{
 			required: true,
 			message: "Please select your skills!",
-		}
-	]});
+		},
+	],
+});
 
 const addItem = () => {
-	if (name.value && !options.some(option => option.value === name.value)) {
+	if (name.value && !options.some((option) => option.value === name.value)) {
 		options.push({ value: name.value, disabled: false });
 		formState.selectedValues.push(name.value);
 		name.value = "";
@@ -58,29 +57,24 @@ const onSubmit = () => {
 	validate().then(() => {
 		console.log("success");
 	});
-
 };
 </script>
 
 <template>
-	<a-form
-		layout="vertical"
-		@submit="onSubmit"
-	>
+	<a-form layout="vertical" @submit="onSubmit">
 		<a-row>
 			<a-col span="24">
-				<a-form-item
-					label="Select Skills"
-				>
+				<a-form-item label="Select Skills">
 					<a-select
 						v-model:value="formState.selectedValues"
 						mode="multiple"
 						size="large"
 						placeholder="Please select your skills"
 						style="width: 100%"
-						:options="options.map(option => ({ value: option.value, label: option.value, disabled: option.disabled }))"
-						v-bind="validateInfos.selectedValues"
-					>
+						:options="
+							options.map((option) => ({ value: option.value, label: option.value, disabled: option.disabled }))
+						"
+						v-bind="validateInfos.selectedValues">
 						<template #dropdownRender="{ menuNode: menu }">
 							<v-nodes :vnodes="menu" />
 							<a-divider style="margin: 4px 0" />
@@ -100,10 +94,6 @@ const onSubmit = () => {
 			<a-col span="24" class="flex justify-end">
 				<a-button type="primary" size="large" html-type="submit">Save</a-button>
 			</a-col>
-
 		</a-row>
-
 	</a-form>
-
 </template>
-

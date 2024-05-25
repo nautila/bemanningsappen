@@ -17,6 +17,8 @@ module default {
 		required user: default::User {
 			constraint exclusive;
 		};
+
+		cv := .<worker[is worker::CV];
 	}
 
 	type Employer extending default::Account {
