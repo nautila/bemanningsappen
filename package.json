@@ -20,6 +20,7 @@
 		"nuxt": "^3.11.2",
 		"nuxt-edgedb-module": "^0.0.46",
 		"nuxt-typed-router": "^3.6.3",
+		"sass": "^1.77.2",
 		"vue": "^3.4.27",
 		"vue-router": "^4.3.2"
 	},
