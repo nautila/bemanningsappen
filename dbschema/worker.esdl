@@ -13,7 +13,7 @@ module worker {
 	}
 
 	type CV {
-		required worker: default::Worker;
+		required worker: default::Worker { constraint exclusive; };
 		required title: str;
 		tagline: str;
 		introduction: str;
@@ -22,12 +22,12 @@ module worker {
 		multi qualifications: Qualification { on source delete delete target if orphan };
 		multi skills: Skill { on source delete delete target if orphan };
 
-		access policy worker_has_full_access
-			allow all
-			using (.worker ?= global default::ClientUser);
+		# access policy worker_has_full_access
+		# 	allow all
+		# 	using (.worker ?= global default::ClientUser);
 
-		access policy others_read_only
-			allow select;
+		# access policy others_read_only
+		# 	allow select;
 	}
 
 	abstract type Experience {
