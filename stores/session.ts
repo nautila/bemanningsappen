@@ -1,4 +1,4 @@
-import type { LoginResponse } from "~/types/auth/login";
+import type { LoginResponse } from "~/types/auth";
 
 export interface SessionStoreData {
 	token: string;

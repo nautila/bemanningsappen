@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Form } from "ant-design-vue";
 import { LockOutlined, UserOutlined } from "@ant-design/icons-vue";
-import type { LoginResponse } from "~/types/auth/login";
+import type { LoginResponse } from "~/types/auth";
 
 const emit = defineEmits<{
 	loggedIn: [response: LoginResponse];

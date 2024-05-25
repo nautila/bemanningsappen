@@ -1,6 +1,6 @@
 import { useAuthentication } from "~/server/auth";
 import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
-import type { LoginResponse } from "~/types/auth/login";
+import type { LoginResponse } from "~/types/auth";
 
 export default defineEventHandler(async (event) => {
 	const body = await readBody(event);

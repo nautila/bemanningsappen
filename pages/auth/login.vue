@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LoginResponse } from "~/types/auth/login";
+import type { LoginResponse, SessionAccount } from "~/types/auth";
 
 definePageMeta({ layout: "public" });
 
@@ -12,30 +12,22 @@ const showAccountSelection = ref(false);
 const handleLoggedIn = (response: LoginResponse) => {
 	session.set(response);
 	const accounts = session.accounts;
-	console.log(accounts);
 
-	handleSelectAccount(null); // TODO: Remove this line, and uncomment below
+	if (!accounts || !accounts.length) throw new Error("No accounts found");
 
-	// if (!accounts || !accounts.length) throw new Error("No accounts found");
-
-	// if (accounts.length > 1) {
-	// 	showLoginForm.value = false;
-	// 	showAccountSelection.value = true;
-	// } else if (accounts.length === 1) {
-	// 	handleSelectAccount(accounts[0]);
-	// }
+	if (accounts.length > 1) {
+		showLoginForm.value = false;
+		showAccountSelection.value = true;
+	} else if (accounts.length === 1) {
+		handleSelectAccount(accounts[0]);
+	}
 };
 
-const handleSelectAccount = (
-	account: any, // TODO: Set proper type
-) => {
-	// const type = account.type;
-	const type = "worker" as "worker" | "employer"; // TODO: Remove this line
-
-	switch (type) {
-		case "worker":
+const handleSelectAccount = (account: SessionAccount) => {
+	switch (account.type) {
+		case "default::Worker":
 			return router.push("/worker");
-		case "employer":
+		case "default::Employer":
 			return router.push(`/employer/${account.id}`);
 	}
 };
