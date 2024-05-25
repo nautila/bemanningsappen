@@ -1,3 +1,17 @@
+<script setup lang="ts">
+definePageMeta({
+	layout: "public",
+});
+
+const handleEmployerSignup = () => {
+	useRouter().push("/signup/employer");
+};
+
+const handleWorkerSignup = () => {
+	useRouter().push("/signup/worker");
+};
+</script>
+
 <template>
 	<a-row type="flex" justify="center">
 		<a-card title="Bemanningsappen">
@@ -8,19 +22,4 @@
 			</a-flex>
 		</a-card>
 	</a-row>
-
 </template>
-
-<script setup lang="ts">
-	definePageMeta({
-		layout: 'public',
-	})
-
-	const handleEmployerSignup = () => {
-		useRouter().push('/signup/employer');
-	}
-
-	const handleWorkerSignup = () => {
-		useRouter().push('/signup/worker');
-	}
-</script>
