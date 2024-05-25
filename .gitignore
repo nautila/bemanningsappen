@@ -14,8 +14,12 @@ server.key
 applications/*/.env*.local
 
 # generated files
+**/*.edgeql.ts
+dbschema/queries.*
 dbschema/query-builder
 dbschema/interfaces.ts
+queries/*.query.ts
+
 
 # compiled output, cache, data, temp and system folders
 .cache
