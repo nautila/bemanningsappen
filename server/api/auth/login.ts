@@ -1,4 +1,5 @@
 import { useAuthentication } from "~/server/auth";
+import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
 import type { LoginResponse } from "~/types/auth/login";
 
 export default defineEventHandler(async (event) => {
@@ -6,11 +7,21 @@ export default defineEventHandler(async (event) => {
 
 	const { login } = useAuthentication();
 
-	const token = await login(body);
+	const authClientToken = await login(body);
+
+	const { getUser } = useEdgeDbQueriesWithGlobals({ authClientToken });
+
+	const user = await getUser();
+
+	if (!user)
+		throw createError({
+			statusCode: 404,
+			statusMessage: "User not found",
+		});
 
 	return {
-		token,
-		user: { id: "..." },
-		accounts: [],
+		token: authClientToken,
+		user: { id: user.id },
+		accounts: [...user.employers, ...(user.worker ? [user.worker] : [])],
 	} as LoginResponse;
 });
