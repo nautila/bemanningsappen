@@ -1,17 +1,3 @@
-<template>
-	<a-row>
-		<shared-page-header title="Profile Information" subTitle="Your profile information" />
-		<a-col span="24">
-			<a-tabs v-model:activeKey="activeKey" class="p-5 w-full">
-				<a-tab-pane v-for="tab in tabs" :key="tab.key" :tab="tab.label">
-					<component :is="tab.component" />
-				</a-tab-pane>
-			</a-tabs>
-		</a-col>
-	</a-row>
-
-</template>
-
 <script setup lang="ts">
 const activeKey = ref("personal-information");
 const SkillsTab = defineAsyncComponent(() => import("@/components/worker/skillsTab.vue"));
@@ -44,6 +30,19 @@ const tabs = [
 
 </script>
 
+<template>
+	<a-row>
+		<shared-page-header title="Profile Information" subTitle="Your profile information" />
+		<a-col span="24">
+			<a-tabs v-model:activeKey="activeKey" class="p-5 w-full">
+				<a-tab-pane v-for="tab in tabs" :key="tab.key" :tab="tab.label">
+					<component :is="tab.component" />
+				</a-tab-pane>
+			</a-tabs>
+		</a-col>
+	</a-row>
+
+</template>
 
 <style scoped>
 
