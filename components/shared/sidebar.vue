@@ -32,7 +32,7 @@ const { collapsed, userType } = defineProps({
 	userType: {
 		type: String as PropType<string>,
 		required: false,
-		default: userTypes.EMPLOYER,
+		default: userTypes.WORKER,
 	}
 });
 
@@ -61,8 +61,8 @@ const menus = userType === userTypes.EMPLOYER ? [
 		{
 			key: "1",
 			icon: UserOutlined,
-			label: "nav worker 1",
-			url: "/dashboard",
+			label: "Profile",
+			url: "/dashboard/worker/profile",
 		},
 		{
 			key: "2",
