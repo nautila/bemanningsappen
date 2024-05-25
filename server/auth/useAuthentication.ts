@@ -1,14 +1,13 @@
-import generatePKCE from "./generatePKCE";
+import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
+import type { SignupEmployerFormData } from "~/types/signup-employer";
 
 // TODO: Replace with proper envvar getter functions.
-// const EDGEDB_AUTH_BASE_URL = process.env.EDGEDB_AUTH_BASE_URL;
 const EDGEDB_AUTH_BASE_URL = "http://localhost:10706/branch/main/ext/auth/";
 const SERVER_PORT = 3000;
 const EDGEDB_AUTH_DEFAULT_PROVIDER = "builtin::local_emailpassword";
 
-const handleSignup = async (form: any) => {
-	const { createUser } = useEdgeDbQueries();
-	const pkce = generatePKCE();
+const handleSignup = async (form: SignupEmployerFormData) => {
+	const pkce = useEdgeDbPKCE();
 
 	const { email, password } = form;
 	const provider = EDGEDB_AUTH_DEFAULT_PROVIDER;
@@ -34,6 +33,10 @@ const handleSignup = async (form: any) => {
 
 	const { firstName, lastName, dateOfBirth } = form;
 
+	const authClientToken = await handleAuthenticate({ email, password, pkce });
+
+	const { createUser } = useEdgeDbQueriesWithGlobals({ authClientToken });
+
 	return createUser({
 		firstName,
 		lastName,
@@ -41,9 +44,15 @@ const handleSignup = async (form: any) => {
 	});
 };
 
-const handleAuthenticate = async ({ email, password }: { email: string; password: string }) => {
-	const pkce = generatePKCE();
-
+const handleAuthenticate = async ({
+	email,
+	password,
+	pkce = useEdgeDbPKCE(),
+}: {
+	email: string;
+	password: string;
+	pkce?: { verifier: string; challenge: string };
+}): Promise<string> => {
 	const provider = EDGEDB_AUTH_DEFAULT_PROVIDER;
 
 	if (!email || !password || !provider) return _handleMissingCredentialsError();
