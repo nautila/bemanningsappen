@@ -44,7 +44,7 @@ const handleSignup = async (event: any) => {
 	event.node.res.end();
 };
 
-export default defineEventHandler((event: any) => {
+export default defineEventHandler((event) => {
 	console.log("Handling signup event.");
 	handleSignup(event);
 });
