@@ -1,10 +1,17 @@
+import type { Client } from "edgedb";
+
 export interface EdgeDbGlobalsArgs {
 	authClientToken?: string;
 	employerClientId?: string;
 }
 
+export function useEdgeDbClient() {
+	const client = (globalThis as any).__nuxt_edgedb_server_client__ as Client;
+	return client;
+}
+
 export function useEdgeDbWithGlobals(globals?: EdgeDbGlobalsArgs) {
-	const client = useEdgeDb();
+	const client = useEdgeDbClient();
 
 	if (globals) {
 		return client.withGlobals({

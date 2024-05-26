@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 	const body = await readBody(event);
 	const data = EducationExperienceSchema.parse(body);
 
-	const { workerAddEducationExperience } = useEdgeDbQueries();
+	const { workerAddEducationExperience } = useEdgeDbQueriesWithGlobals();
 
 	const result = await workerAddEducationExperience({ workerId, ...data });
 

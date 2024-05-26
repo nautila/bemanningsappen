@@ -1,4 +1,3 @@
-import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
 import type { SignupEmployerFormData } from "~/types/signup-employer";
 
 console.log(process.env);

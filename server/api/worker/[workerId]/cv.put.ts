@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 	const body = await readBody(event);
 	console.log(body);
 
-	const { upsertWorkerCv } = useEdgeDbQueries();
+	const { upsertWorkerCv } = useEdgeDbQueriesWithGlobals();
 
 	const cv = await upsertWorkerCv({ ...body, workerId });
 	console.log(cv);
