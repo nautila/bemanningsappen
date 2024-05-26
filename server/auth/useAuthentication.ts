@@ -1,21 +1,23 @@
 import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
 import type { SignupEmployerFormData } from "~/types/signup-employer";
+import type { SignupWorkerFormData } from "~/types/signup-worker";
 
-// TODO: Replace with proper envvar getter functions.
-const EDGEDB_AUTH_BASE_URL = "http://localhost:10732/branch/main/ext/auth/";
-const SERVER_PORT = 3000;
-const EDGEDB_AUTH_DEFAULT_PROVIDER = "builtin::local_emailpassword";
+const {
+	edgedbAuthBaseUrl,
+	edgedbAuthDefaultProvider,
+	public: { serverPort },
+} = useRuntimeConfig();
 
-const handleSignup = async (form: SignupEmployerFormData) => {
+const handleSignup = async (form: SignupEmployerFormData | SignupWorkerFormData) => {
 	const pkce = useEdgeDbPKCE();
 
 	const { email, password } = form;
-	const provider = EDGEDB_AUTH_DEFAULT_PROVIDER;
+	const provider = edgedbAuthDefaultProvider;
 
 	if (!email || !password || !provider) return _handleMissingCredentialsError();
 
-	const registrationUrl = new URL("register", EDGEDB_AUTH_BASE_URL);
-	const registrationResponse = await fetch(registrationUrl, {
+	const registrationUrl = new URL("register", edgedbAuthBaseUrl);
+	const registrationResponse = await fetch(registrationUrl.href, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -25,7 +27,7 @@ const handleSignup = async (form: SignupEmployerFormData) => {
 			email,
 			password,
 			provider,
-			verify_url: `http://localhost:${SERVER_PORT}/auth/verify`,
+			verify_url: `http://localhost:${serverPort}/auth/verify`,
 		}),
 	});
 
@@ -53,12 +55,12 @@ const handleAuthenticate = async ({
 	password: string;
 	pkce?: { verifier: string; challenge: string };
 }): Promise<string> => {
-	const provider = EDGEDB_AUTH_DEFAULT_PROVIDER;
+	const provider = edgedbAuthDefaultProvider;
 
 	if (!email || !password || !provider) return _handleMissingCredentialsError();
 
-	const authenticateUrl = new URL("authenticate", EDGEDB_AUTH_BASE_URL);
-	const authenticateResponse = await fetch(authenticateUrl, {
+	const authenticateUrl = new URL("authenticate", edgedbAuthBaseUrl);
+	const authenticateResponse = await fetch(authenticateUrl.href, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -75,7 +77,7 @@ const handleAuthenticate = async ({
 
 	const { code } = await authenticateResponse.json();
 
-	const tokenUrl = new URL("token", EDGEDB_AUTH_BASE_URL);
+	const tokenUrl = new URL("token", edgedbAuthBaseUrl);
 	tokenUrl.searchParams.set("code", code);
 	tokenUrl.searchParams.set("verifier", pkce.verifier);
 	const tokenResponse = await fetch(tokenUrl.href, { method: "GET" });
