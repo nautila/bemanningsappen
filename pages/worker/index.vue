@@ -11,18 +11,18 @@ const tabs = [
 	{
 		key: "experiences",
 		label: "Experiences",
-		component: defineAsyncComponent(() => import("@/components/worker/experienceTab.vue")),
+		component: defineAsyncComponent(() => import("@/components/modals/experience.vue")),
 	},
-	{
-		key: "qualifications",
-		label: "Qualifications",
-		component: defineAsyncComponent(() => import("@/components/worker/qualificationTab.vue")),
-	},
-	{
-		key: "skills",
-		label: "Skills",
-		component: defineAsyncComponent(() => import("@/components/worker/skillsTab.vue")),
-	},
+	// {
+	// 	key: "qualifications",
+	// 	label: "Qualifications",
+	// 	component: defineAsyncComponent(() => import("@/components/worker/qualificationTab.vue")),
+	// },
+	// {
+	// 	key: "skills",
+	// 	label: "Skills",
+	// 	component: defineAsyncComponent(() => import("@/components/worker/skillsTab.vue")),
+	// },
 ];
 </script>
 

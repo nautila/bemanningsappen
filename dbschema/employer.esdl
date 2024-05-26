@@ -1,6 +1,17 @@
 module employer {
 	type Profile {
-		required name: str;
-		required idNumber: str;
+		required employer: default::Employer { constraint exclusive; };
+
+		name: str;
+		logo: image::Image;
+		address: str;
+		description: str;
+
+		# access policy employer_has_full_access
+		# 	allow all
+		# 	using (assert_exists((global default::ClientUser in .employer.users)));
+
+		# access policy others_read_only
+		# 	allow select;
 	}
 }

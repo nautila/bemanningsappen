@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Form } from "ant-design-vue";
-import type { WorkerCV } from "~/types/worker/cv";
+import type { WorkerCV } from "~/types/worker/worker";
 
 const { id: workerId, cv, refresh } = await useWorker();
 
 const body: WorkerCV = reactive({
-	tagline: cv?.value?.tagline ?? undefined,
-	introduction: cv?.value?.introduction ?? undefined,
+	tagline: cv.value?.tagline ?? undefined,
+	introduction: cv.value?.introduction ?? undefined,
 });
 const { validate, validateInfos } = Form.useForm(body, {
 	tagline: [],
@@ -26,7 +26,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-	<AForm layout="vertical" @submit="onSubmit">
+	<a-form class="w-full py-5"  layout="vertical" @submit="onSubmit">
 		<ARow :gutter="20">
 			<ACol span="24">
 				<AFormItem label="Tagline" v-bind="validateInfos.tagline">
@@ -44,5 +44,5 @@ const onSubmit = async () => {
 				</AFormItem>
 			</ACol>
 		</ARow>
-	</AForm>
+	</a-form>
 </template>

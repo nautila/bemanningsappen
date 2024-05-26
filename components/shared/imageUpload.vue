@@ -1,47 +1,83 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue';
+import { ref } from "vue";
+import { PlusOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import { message, type UploadChangeParam, type UploadFile } from "ant-design-vue";
+import type { ImageInterface } from "~/types/image";
+import type { FileType } from "ant-design-vue/es/upload/interface";
+
+const modelValue = defineModel<ImageInterface>();
 
 const fileList = ref<UploadFile[]>([]);
 const loading = ref(false);
 const imageUrl = ref<string | null>(null);
 
+if (modelValue.value) {
+	fileList.value.push({
+		name: modelValue.value.name,
+		uid: "",
+		originFileObj: modelValue.value.data as FileType,
+	});
+}
+
 const beforeUpload = (file: UploadFile) => {
-	const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+	const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
 	if (!isJpgOrPng) {
-		message.error('You can only upload JPG or PNG files!');
+		message.error("You can only upload JPG or PNG files!");
 		return false;
 	}
 	// Check if size is defined
 	if (file.size == null) {
-		message.error('Failed to get the file size');
+		message.error("Failed to get the file size");
 		return false;
 	}
 	const isLt2M = file.size / 1024 / 1024 < 2;
 	if (!isLt2M) {
-		message.error('Image must be smaller than 2MB!');
+		message.error("Image must be smaller than 2MB!");
 		return false;
 	}
 	return true;
 };
 
-
-const handleChange = (info: UploadChangeParam<UploadFile>) => {
+const handleChange = async (info: UploadChangeParam<UploadFile>) => {
 	fileList.value = info.fileList;
-	if (info.file.status === 'uploading') {
+	if (info.file.status === "uploading") {
 		loading.value = true;
-	} else if (info.file.status === 'done') {
-		// Assuming that "originFileObj" is a Blob representing the file
-		if (info.file.originFileObj) {
-			getBase64(info.file.originFileObj, (base64Url: string) => {
-				imageUrl.value = base64Url;
-				loading.value = false;
-			});
+	} else if (info.file.status === "done") {
+		const formData = new FormData();
+		const image = info.file.originFileObj as Blob;
+		formData.append("image", image);
+		formData.append("image", info.file.name);
+
+		const response = await fetch("/api/image/upload", {
+			method: "POST",
+			body: formData,
+		});
+
+		if (!response.ok) {
+			loading.value = false;
+			message.error("Upload error");
+			return;
 		}
-	} else if (info.file.status === 'error') {
+
+		const data = await response.json();
+
+		message.success(data.message);
 		loading.value = false;
-		message.error('Upload error');
+
+		getBase64(image, (base64Url: string) => {
+			imageUrl.value = base64Url;
+		});
+
+		// Assuming that "originFileObj" is a Blob representing the file
+		// if (info.file.originFileObj) {
+		// 	getBase64(info.file.originFileObj, (base64Url: string) => {
+		// 		imageUrl.value = base64Url;
+		// 		loading.value = false;
+		// 	});
+		// }
+	} else if (info.file.status === "error") {
+		loading.value = false;
+		message.error("Upload error");
 	}
 };
 
@@ -51,6 +87,7 @@ const getBase64 = (img: Blob, callback: (url: string) => void) => {
 	reader.readAsDataURL(img);
 };
 </script>
+
 <template>
 	<a-upload
 		v-model:file-list="fileList"
@@ -58,10 +95,8 @@ const getBase64 = (img: Blob, callback: (url: string) => void) => {
 		list-type="picture-card"
 		class="avatar-uploader"
 		:show-upload-list="false"
-		action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 		:before-upload="beforeUpload"
-		@change="handleChange"
-	>
+		@change="handleChange">
 		<img v-if="imageUrl" :src="imageUrl" alt="avatar" />
 		<div v-else>
 			<loading-outlined v-if="loading" />

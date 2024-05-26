@@ -1,14 +1,31 @@
-<template>
-	<EdgeDbAuthEmailSignup v-slot="{ email, updateEmail, password, updatePassword, submit, loading }" redirect-to="/">
-		<div>
-			<input type="email" :value="email" placeholder="Email" @change="(e: any) => updateEmail(e.target.value)" />
-			<input
-				type="password"
-				:value="password"
-				placeholder="Password"
-				@change="(e: any) => updatePassword(e.target.value)" />
+<script setup lang="ts">
+import type { Worker } from "#edgedb/interfaces";
 
-			<button type="button" @click.prevent="(e) => !loading && submit()">{{ loading ? "Laster" : "Registrer" }}</button>
-		</div>
-	</EdgeDbAuthEmailSignup>
+const workers: Worker[] = [
+	{
+		user: {
+			id: "db0cead-ae0decb-bdce0ab-debac",
+			identities: [],
+		},
+		id: "0fd8a-ffdf-afaifdf8f-dabce",
+	},
+	{
+		user: {
+			id: "db0cead-ae0decb-bdce0ab-debac",
+			identities: [],
+		},
+		id: "0fd8a-ffdf-afaifdf8f-dabce",
+	},
+	{
+		user: {
+			id: "db0cead-ae0decb-bdce0ab-debac",
+			identities: [],
+		},
+		id: "0fd8a-ffdf-afaifdf8f-dabce",
+	},
+];
+</script>
+
+<template>
+	<b-employer-worker-list :workers="workers" />
 </template>
