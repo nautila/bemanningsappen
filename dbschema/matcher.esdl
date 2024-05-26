@@ -4,6 +4,11 @@
 module matcher {
 	# scalar type WorkStatus extending enum<Pending, Rejected, Accepted>;
 
+	type EmployerWorkerAvailabilityRequest extending time::Timestamped {
+		required employer: default::Employer;
+		required worker: default::Worker;
+	}
+
 	type Matching {
 		required worker: default::Worker;
 		required employer: default::Employer;
