@@ -26,7 +26,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-	<AForm layout="vertical" @submit="onSubmit">
+	<a-form class="w-full py-5"  layout="vertical" @submit="onSubmit">
 		<ARow :gutter="20">
 			<ACol span="24">
 				<AFormItem label="Tagline" v-bind="validateInfos.tagline">
@@ -44,5 +44,5 @@ const onSubmit = async () => {
 				</AFormItem>
 			</ACol>
 		</ARow>
-	</AForm>
+	</a-form>
 </template>

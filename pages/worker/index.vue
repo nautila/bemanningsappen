@@ -11,7 +11,7 @@ const tabs = [
 	{
 		key: "experiences",
 		label: "Experiences",
-		component: defineAsyncComponent(() => import("@/components/worker/experienceTab.vue")),
+		component: defineAsyncComponent(() => import("@/components/modals/experience.vue")),
 	},
 	{
 		key: "qualifications",

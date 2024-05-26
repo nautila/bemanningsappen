@@ -47,7 +47,7 @@ const onSubmit = () => {
 </script>
 
 <template>
-	<a-form layout="vertical" @submit="onSubmit">
+	<a-form class="w-full py-5" layout="vertical" @submit="onSubmit">
 		<a-row :gutter="20">
 			<a-col :span="24">
 				<shared-image-upload />
@@ -76,9 +76,9 @@ const onSubmit = () => {
 				</a-form-item>
 			</a-col>
 		</a-row>
-
-		<a-row />
 	</a-form>
+
+
 </template>
 
 <style scoped></style>
