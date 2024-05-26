@@ -1,6 +1,8 @@
 import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
 import type { SignupEmployerFormData } from "~/types/signup-employer";
 
+console.log(process.env);
+
 // TODO: Replace with proper envvar getter functions.
 // const EDGEDB_AUTH_BASE_URL = "http://localhost:10732/branch/main/ext/auth/"; // TODO: TDO local
 const EDGEDB_AUTH_BASE_URL = "https://bemanningsappen--nautila.c-37.i.aws.edgedb.cloud/branch/main/ext/auth/"; // TODO: Cloud
