@@ -1,6 +1,6 @@
 with
-	user := (select User filter .id = <uuid>$userId),
+	U := (select User filter .id = <uuid>$userId),
 insert Employer {
-	users := { user },
+	users := { U },
 	name := <optional str>$name,
 }
