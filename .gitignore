@@ -6,12 +6,8 @@ server.crt
 server.key
 
 # env files
-.env*
-!.env.default
-!.env.*.default
-!.env.example
-!applications/*/.env*
-applications/*/.env*.local
+.env.local
+.env.*.local
 
 # generated files
 **/*.edgeql.ts
@@ -19,7 +15,6 @@ dbschema/queries.*
 dbschema/query-builder
 dbschema/interfaces.ts
 queries/*.query.ts
-
 
 # compiled output, cache, data, temp and system folders
 .cache
