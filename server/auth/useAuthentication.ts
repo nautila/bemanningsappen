@@ -2,7 +2,9 @@ import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
 import type { SignupEmployerFormData } from "~/types/signup-employer";
 
 // TODO: Replace with proper envvar getter functions.
-const EDGEDB_AUTH_BASE_URL = "http://localhost:10732/branch/main/ext/auth/";
+// const EDGEDB_AUTH_BASE_URL = "http://localhost:10732/branch/main/ext/auth/"; // TODO: TDO local
+const EDGEDB_AUTH_BASE_URL = "https://bemanningsappen--nautila.c-37.i.aws.edgedb.cloud/branch/main/ext/auth/"; // TODO: Cloud
+
 const SERVER_PORT = 3000;
 const EDGEDB_AUTH_DEFAULT_PROVIDER = "builtin::local_emailpassword";
 
@@ -25,7 +27,8 @@ const handleSignup = async (form: SignupEmployerFormData) => {
 			email,
 			password,
 			provider,
-			verify_url: `http://localhost:${SERVER_PORT}/auth/verify`,
+			// verify_url: `http://localhost:${SERVER_PORT}/auth/verify`, // TODO: Local
+			verify_url: "https://bemanningsappen.vercel.app", // TODO: Cloud.
 		}),
 	});
 
