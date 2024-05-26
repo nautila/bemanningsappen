@@ -1,4 +1,3 @@
-import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
 import type { SignupEmployerFormData } from "~/types/signup-employer";
 
 // TODO: Replace with proper envvar getter functions.

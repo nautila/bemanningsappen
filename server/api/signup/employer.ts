@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 		throw createError("User not created");
 	}
 
-	const { createEmployer } = useEdgeDbQueries();
+	const { createEmployer } = useEdgeDbQueriesWithGlobals();
 
 	const employer = await createEmployer({
 		userId: user.id,

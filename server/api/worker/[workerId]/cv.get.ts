@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
 	console.log("workerId (server)", workerId);
 
-	const { getWorkerCv } = useEdgeDbQueries();
+	const { getWorkerCv } = useEdgeDbQueriesWithGlobals();
 
 	const cv = await getWorkerCv({ workerId });
 	console.log(cv);
