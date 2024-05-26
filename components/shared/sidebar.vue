@@ -14,7 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from "@ant-design/icons-vue";
+import { UserOutlined, VideoCameraOutlined, NotificationOutlined } from "@ant-design/icons-vue";
+
 
 const route = useRoute("employer-employerId");
 const employerId = route.params.employerId;
@@ -55,6 +56,12 @@ const menus = !!employerId
 				label: "Profile",
 				url: "/worker",
 			},
+		{
+			key: "2",
+			icon: NotificationOutlined,
+			label: "Requests",
+			url: "/worker/requests",
+		},
 			// {
 			// 	key: "2",
 			// 	icon: VideoCameraOutlined,
