@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Worker } from "#edgedb/interfaces";
+import type { Worker } from "~/types/worker/worker";
 
 defineProps<{
 	workers: Worker[];
@@ -8,37 +8,7 @@ defineProps<{
 
 <template>
 	<div class="b-employer-worker-list">
-		<div v-for="worker in workers" :key="worker.id">
-			<shared-card title="Arbeider 1" direction="row">
-				<p>
-					<span>Erfaringer</span>
-					<!--
-					<span v-for="exp in worker.experiences">{{ exp }}</span>
-					-->
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-				</p>
-				<p>
-					<span>Kvalifikasjoner</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-				</p>
-				<p>
-					<span>Ferdigheter</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-					<span>fjdjfk</span>
-				</p>
-			</shared-card>
-		</div>
+		<BEmployerWorkerListItem v-for="worker in workers" :key="worker.id" :worker="worker" />
 	</div>
 </template>
 
@@ -50,11 +20,8 @@ defineProps<{
 	flex-direction: column; // For direction="row" on <shared-card>
 	// flex-wrap: wrap; // For direcion="column" on <shared-card>
 
-	.shared-card {
-		p {
-			display: flex;
-			gap: 0.25rem;
-		}
+	> * {
+		width: 100%;
 	}
 }
 </style>

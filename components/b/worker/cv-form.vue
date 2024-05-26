@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Form } from "ant-design-vue";
-import type { WorkerCV } from "~/types/worker/cv";
+import type { WorkerCV } from "~/types/worker/worker";
 
 const { id: workerId, cv, refresh } = await useWorker();
 

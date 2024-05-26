@@ -42,7 +42,7 @@ defineProps<{
 	}
 	&--column {
 		width: min-content;
-		gap: 1rem;
+		gap: 0.2rem;
 		flex-direction: column;
 		justify-content: space-between;
 	}
