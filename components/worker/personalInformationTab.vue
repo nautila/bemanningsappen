@@ -57,12 +57,12 @@ const onSubmit = () => {
 			</a-col> -->
 			<a-col span="12">
 				<a-form-item label="First name" v-bind="validateInfos.firstName">
-					<a-input v-model:value="formState.firstName" placeholder="First name" />
+					<a-input v-model:value="formState.firstName" placeholder="First name" disabled />
 				</a-form-item>
 			</a-col>
 			<a-col span="12">
 				<a-form-item label="Last name" v-bind="validateInfos.lastName">
-					<a-input v-model:value="formState.lastName" placeholder="Last name" />
+					<a-input v-model:value="formState.lastName" placeholder="Last name" disabled />
 				</a-form-item>
 			</a-col>
 			<!-- <a-col span="12">
@@ -77,8 +77,6 @@ const onSubmit = () => {
 			</a-col>
 		</a-row>
 	</a-form>
-
-
 </template>
 
 <style scoped></style>
