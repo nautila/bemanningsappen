@@ -9,3 +9,7 @@ The application aims to solve the problem of finding and recruiting workers, whe
 Workes benfit by making themselves available for work from the comfort of their own homes, and not having to show up to reqruitment agencies hoping for a days work. They'll be notified when an employer is interested in their profile, and accept an offer directly from the app.
 
 Employers benefit by having a pool of available workers at their fingertips, and can quickly find and hire workers when they need them. They can search for workers based on their skills, qualifications and experiences, being presented workers available to the moment.
+
+## How we're using EdgeDB
+
+...

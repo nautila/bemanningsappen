@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const session = useSessionStore();
+const worker = await useWorker();
 
 const showDebug = ref(false);
 const toggleDebug = () => (showDebug.value = !showDebug.value);
@@ -12,6 +13,9 @@ const toggleDebug = () => (showDebug.value = !showDebug.value);
 		<div id="debug" v-if="showDebug">
 			<h3>Session</h3>
 			<pre>{{ session.session }}</pre>
+
+			<h3>Worker</h3>
+			<pre>{{ worker.data }}</pre>
 		</div>
 
 		<NuxtLayout>
@@ -36,7 +40,7 @@ const toggleDebug = () => (showDebug.value = !showDebug.value);
 	h3 {
 		font-weight: bold;
 		text-decoration: underline;
-		margin-bottom: 0.5rem;
+		margin: 0.5rem 0;
 	}
 
 	pre {
