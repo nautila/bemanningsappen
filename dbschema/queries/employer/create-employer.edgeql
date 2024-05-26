@@ -1,6 +1,14 @@
 with
 	U := (select User filter .id = <uuid>$userId),
-insert Employer {
-	users := { U },
-	name := <optional str>$name,
-}
+	E := (
+		insert Employer {
+			users := { U },
+		}
+	),
+	P := (
+		insert employer::Profile {
+			employer := E,
+			name := <optional str>$name,
+		}
+	)
+select E;

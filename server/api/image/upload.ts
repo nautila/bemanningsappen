@@ -1,5 +1,3 @@
-import { useEdgeDbQueriesWithGlobals } from "~/server/edgedb";
-
 export default defineEventHandler(async (event) => {
 	const files = await readMultipartFormData(event);
 

@@ -2,6 +2,7 @@ module employer {
 	type Profile {
 		required employer: default::Employer { constraint exclusive; };
 
+		name: str;
 		logo: image::Image;
 		address: str;
 		description: str;

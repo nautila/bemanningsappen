@@ -5,8 +5,8 @@ import type { WorkerCV } from "~/types/worker/cv";
 const { id: workerId, cv, refresh } = await useWorker();
 
 const body: WorkerCV = reactive({
-	tagline: cv?.value?.tagline ?? undefined,
-	introduction: cv?.value?.introduction ?? undefined,
+	tagline: cv.value?.tagline ?? undefined,
+	introduction: cv.value?.introduction ?? undefined,
 });
 const { validate, validateInfos } = Form.useForm(body, {
 	tagline: [],

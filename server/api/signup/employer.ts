@@ -24,5 +24,5 @@ export default defineEventHandler(async (event) => {
 		throw createError("Employer not created");
 	}
 
-	return employer.id;
+	return employer;
 });

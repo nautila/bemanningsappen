@@ -23,7 +23,6 @@ module default {
 
 	type Employer extending default::Account {
 		multi users: default::User;
-
-		name: str;
+		profile := .<employer[is employer::Profile];
 	}
 }
