@@ -38,13 +38,18 @@ const handleSignup = async (form: SignupEmployerFormData) => {
 
 	const authClientToken = await handleAuthenticate({ email, password, pkce });
 
+	console.log("handleSignup", "authClientToken", authClientToken);
+
 	const { createUser } = useEdgeDbQueriesWithGlobals({ authClientToken });
 
-	return createUser({
+	const user = createUser({
 		firstName,
 		lastName,
 		dateOfBirth,
 	});
+
+	console.log("handleSignup", "user", user);
+	return user;
 };
 
 const handleAuthenticate = async ({
