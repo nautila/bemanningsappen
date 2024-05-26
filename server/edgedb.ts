@@ -16,7 +16,7 @@ export function useEdgeDbWithGlobals(globals?: EdgeDbGlobalsArgs) {
 	return client;
 }
 
-import * as queries from "#edgedb/queries";
+import * as queries from "~/dbschema/queries";
 export type EdgeDbQueriesWithGlobals = keyof typeof queries;
 
 export function useEdgeDbQueriesWithGlobals(globals?: EdgeDbGlobalsArgs): {
